@@ -11,6 +11,7 @@ public class NBody {
         int N = in.readInt();
         in.readDouble();
         Planet[] allPlanet = new Planet[N];
+
         int i = 0;
         while (i < N) {
             double xP = in.readDouble();
@@ -26,21 +27,22 @@ public class NBody {
     }
 
     public static void main(String[] args) {
-        String filename = null;
+        String filename = args[2];
 
         double T = Double.parseDouble(args[0]);
         double dt = Double.parseDouble(args[1]);
-        filename = args[2];
+
 
         //注意作用域和返回值类型
         double r = readRadius(filename);
+        StdDraw.setScale(-r, r);
         Planet[] planets = readPlanets(filename);
         StdDraw.enableDoubleBuffering();
-        double time ;
+        double time = 0.0;
 
-        for (time = 0; time < T; time += dt) {
-            double[] xForces = new double[planets.length];
-            double[] yForces = new double[planets.length];
+        for (; time < T; time += dt) {
+            Double[] xForces = new Double[planets.length];
+            Double[] yForces = new Double[planets.length];
             for(int i = 0; i < planets.length; i++) {
                 xForces[i] = planets[i].calcNetForceExertedByX(planets);
                 yForces[i] = planets[i].calcNetForceExertedByY(planets);
@@ -50,15 +52,16 @@ public class NBody {
             }
             String imageToDraw = "images/starfield.jpg";
             //Sacle的设置要根据题目上下文推断
-            StdDraw.setScale(-r, r);
+
             StdDraw.picture(0, 0, imageToDraw);
 
 
             for (Planet p : planets) {
                 p.draw();
             }
-            StdDraw.pause(10);
+
             StdDraw.show();
+            StdDraw.pause(10);
 
         }
     }
