@@ -53,7 +53,7 @@ public class Planet {
         int i;
         double x = 0;
         for(i = 0; i < allPlanets.length; i++){
-            if (this.equals(allPlanets[i])) {
+            if (!this.equals(allPlanets[i])) {
                 continue;
             }
             x += calcForceExertedByX(allPlanets[i]);
@@ -66,7 +66,7 @@ public class Planet {
         int i;
         double x = 0;
         for(i = 0; i < allPlanets.length; i++){
-            if (this.equals(allPlanets[i])) {
+            if (!this.equals(allPlanets[i])) {
                 continue;
             }
             x += calcForceExertedByY(allPlanets[i]);
