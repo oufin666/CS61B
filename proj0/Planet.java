@@ -1,10 +1,10 @@
 public class Planet {
     public double xxPos;
-    public double yyPos;
+    public  double yyPos;
     public double xxVel;
     public double yyVel;
     public double mass;
-    public String imgFileName;
+    public  String imgFileName;
 
     public Planet(double xP, double yP, double xV,
                   double yV, double m, String img) {
@@ -53,7 +53,11 @@ public class Planet {
         int i;
         double x = 0;
         for(i = 0; i < allPlanets.length; i++){
+            if (this.equals(allPlanets[i])) {
+                continue;
+            }
             x += calcForceExertedByX(allPlanets[i]);
+
         }
     return x;
     }
@@ -62,6 +66,9 @@ public class Planet {
         int i;
         double x = 0;
         for(i = 0; i < allPlanets.length; i++){
+            if (this.equals(allPlanets[i])) {
+                continue;
+            }
             x += calcForceExertedByY(allPlanets[i]);
         }
         return x;
@@ -76,7 +83,13 @@ public class Planet {
         xxPos += xxVel * t;
         yyPos += yyVel * t;
     }
+    public  void draw(){
+        String name = "images/" + imgFileName;
+        StdDraw.picture(xxPos, yyPos, name);
+    }
 }
+
+
 
 
 

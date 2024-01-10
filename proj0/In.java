@@ -48,11 +48,11 @@ import java.util.regex.Pattern;
  *  @author Kevin Wayne
  */
 public final class In {
-    
+
     private Scanner scanner;
 
     /*** begin: section (1 of 2) of code duplicated from In to StdIn */
-    
+
     // assume Unicode UTF-8 encoding
     private static final String CHARSET_NAME = "UTF-8";
 
@@ -62,20 +62,20 @@ public final class In {
     // the default token separator; we maintain the invariant that this value 
     // is held by the scanner's delimiter between calls
     private static final Pattern WHITESPACE_PATTERN
-        = Pattern.compile("\\p{javaWhitespace}+");
+            = Pattern.compile("\\p{javaWhitespace}+");
 
     // makes whitespace characters significant 
     private static final Pattern EMPTY_PATTERN
-        = Pattern.compile("");
+            = Pattern.compile("");
 
     // used to read the entire input. source:
     // http://weblogs.java.net/blog/pat/archive/2004/10/stupid_scanner_1.html
     private static final Pattern EVERYTHING_PATTERN
-        = Pattern.compile("\\A");
+            = Pattern.compile("\\A");
 
     /*** end: section (1 of 2) of code duplicated from In to StdIn */
 
-   /**
+    /**
      * Create an input stream from standard input.
      */
     public In() {
@@ -83,7 +83,7 @@ public final class In {
         scanner.useLocale(LOCALE);
     }
 
-   /**
+    /**
      * Create an input stream from a socket.
      */
     public In(java.net.Socket socket) {
@@ -97,7 +97,7 @@ public final class In {
         }
     }
 
-   /**
+    /**
      * Create an input stream from a URL.
      */
     public In(URL url) {
@@ -112,7 +112,7 @@ public final class In {
         }
     }
 
-   /**
+    /**
      * Create an input stream from a file.
      */
     public In(File file) {
@@ -126,7 +126,7 @@ public final class In {
     }
 
 
-   /**
+    /**
      * Create an input stream from a filename or web page name.
      */
     public In(String s) {
@@ -177,11 +177,11 @@ public final class In {
     public boolean exists()  {
         return scanner != null;
     }
-    
-    /*** begin: section (2 of 2) of code duplicated from In to StdIn,
-      *  with all methods changed from "public" to "public static" ***/
 
-   /**
+    /*** begin: section (2 of 2) of code duplicated from In to StdIn,
+     *  with all methods changed from "public" to "public static" ***/
+
+    /**
      * Is the input empty (except possibly for whitespace)? Use this
      * to know whether the next call to {@link #readString()}, 
      * {@link #readDouble()}, etc will succeed.
@@ -190,7 +190,7 @@ public final class In {
         return !scanner.hasNext();
     }
 
-   /**
+    /**
      * Does the input have a next line? Use this to know whether the
      * next call to {@link #readLine()} will succeed. <p> Functionally
      * equivalent to {@link #hasNextChar()}.
@@ -212,7 +212,7 @@ public final class In {
     }
 
 
-   /**
+    /**
      * Read and return the next line.
      */
     public String readLine() {
@@ -229,13 +229,13 @@ public final class In {
         scanner.useDelimiter(EMPTY_PATTERN);
         String ch = scanner.next();
         assert (ch.length() == 1) : "Internal (Std)In.readChar() error!"
-            + " Please contact the authors.";
+                + " Please contact the authors.";
         scanner.useDelimiter(WHITESPACE_PATTERN);
         return ch.charAt(0);
-    }  
+    }
 
 
-   /**
+    /**
      * Read and return the remainder of the input as a string.
      */
     public String readAll() {
@@ -249,49 +249,49 @@ public final class In {
     }
 
 
-   /**
+    /**
      * Read and return the next string.
      */
     public String readString() {
         return scanner.next();
     }
 
-   /**
+    /**
      * Read and return the next int.
      */
     public int readInt() {
         return scanner.nextInt();
     }
 
-   /**
+    /**
      * Read and return the next double.
      */
     public double readDouble() {
         return scanner.nextDouble();
     }
 
-   /**
+    /**
      * Read and return the next float.
      */
     public float readFloat() {
         return scanner.nextFloat();
     }
 
-   /**
+    /**
      * Read and return the next long.
      */
     public long readLong() {
         return scanner.nextLong();
     }
 
-   /**
+    /**
      * Read and return the next short.
      */
     public short readShort() {
         return scanner.nextShort();
     }
 
-   /**
+    /**
      * Read and return the next byte.
      */
     public byte readByte() {
@@ -360,14 +360,14 @@ public final class In {
             vals[i] = Double.parseDouble(fields[i]);
         return vals;
     }
-    
+
     /*** end: section (2 of 2) of code duplicated from In to StdIn */
-    
-   /**
+
+    /**
      * Close the input stream.
      */
     public void close() {
-        scanner.close();  
+        scanner.close();
     }
 
     /**
@@ -375,165 +375,7 @@ public final class In {
      * @deprecated Clearer to use 
      * <tt>new In(filename)</tt>.{@link #readAllInts()}
      */
-    public static int[] readInts(String filename) {
-        return new In(filename).readAllInts();
-    }
-
-   /**
-     * Reads all doubles from a file
-     * @deprecated Clearer to use 
-     * <tt>new In(filename)</tt>.{@link #readAllDoubles()}
-     */
-    public static double[] readDoubles(String filename) {
-        return new In(filename).readAllDoubles();
-    }
-
-   /**
-     * Reads all strings from a file
-     * @deprecated Clearer to use 
-     * <tt>new In(filename)</tt>.{@link #readAllStrings()}
-     */
-    public static String[] readStrings(String filename) {
-        return new In(filename).readAllStrings();
-    }
-
-    /**
-     * Reads all ints from stdin 
-     * @deprecated Clearer to use {@link StdIn#readAllInts()}
-     */
-    public static int[] readInts() {
-        return new In().readAllInts();
-    }
-
-   /**
-     * Reads all doubles from stdin
-     * @deprecated Clearer to use {@link StdIn#readAllDoubles()}
-     */
-    public static double[] readDoubles() {
-        return new In().readAllDoubles();
-    }
-
-   /**
-     * Reads all strings from stdin
-     * @deprecated Clearer to use {@link StdIn#readAllStrings()}
-     */
-    public static String[] readStrings() {
-        return new In().readAllStrings();
-    }
-    
-   /**
-     * Test client.
-     */
-    public static void main(String[] args) {
-        In in;
-        String urlName = "http://introcs.cs.princeton.edu/stdlib/InTest.txt";
-
-        // read from a URL
-        System.out.println("readAll() from URL " + urlName);
-        System.out.println("---------------------------------------------------------------------------");
-        try {
-            in = new In(urlName);
-            System.out.println(in.readAll());
-        }
-        catch (Exception e) { System.out.println(e); }
-        System.out.println();
-
-        // read one line at a time from URL
-        System.out.println("readLine() from URL " + urlName);
-        System.out.println("---------------------------------------------------------------------------");
-        try {
-            in = new In(urlName);
-            while (!in.isEmpty()) {
-                String s = in.readLine();
-                System.out.println(s);
-            }
-        }
-        catch (Exception e) { System.out.println(e); }
-        System.out.println();
-
-        // read one string at a time from URL
-        System.out.println("readString() from URL " + urlName);
-        System.out.println("---------------------------------------------------------------------------");
-        try {
-            in = new In(urlName);
-            while (!in.isEmpty()) {
-                String s = in.readString();
-                System.out.println(s);
-            }
-        }
-        catch (Exception e) { System.out.println(e); }
-        System.out.println();
 
 
-        // read one line at a time from file in current directory
-        System.out.println("readLine() from current directory");
-        System.out.println("---------------------------------------------------------------------------");
-        try {
-            in = new In("./InTest.txt");
-            while (!in.isEmpty()) {
-                String s = in.readLine();
-                System.out.println(s);
-            }
-        }
-        catch (Exception e) { System.out.println(e); }
-        System.out.println();
-
-
-        // read one line at a time from file using relative path
-        System.out.println("readLine() from relative path");
-        System.out.println("---------------------------------------------------------------------------");
-        try {
-            in = new In("../stdlib/InTest.txt");
-            while (!in.isEmpty()) {
-                String s = in.readLine();
-                System.out.println(s);
-            }
-        }
-        catch (Exception e) { System.out.println(e); }
-        System.out.println();
-
-        // read one char at a time
-        System.out.println("readChar() from file");
-        System.out.println("---------------------------------------------------------------------------");
-        try {
-            in = new In("InTest.txt");
-            while (!in.isEmpty()) {
-                char c = in.readChar();
-                System.out.print(c);
-            }
-        }
-        catch (Exception e) { System.out.println(e); }
-        System.out.println();
-        System.out.println();
-
-        // read one line at a time from absolute OS X / Linux path
-        System.out.println("readLine() from absolute OS X / Linux path");
-        System.out.println("---------------------------------------------------------------------------");
-        in = new In("/n/fs/introcs/www/java/stdlib/InTest.txt");
-        try {
-            while (!in.isEmpty()) {
-                String s = in.readLine();
-                System.out.println(s);
-            }
-        }
-        catch (Exception e) { System.out.println(e); }
-        System.out.println();
-
-
-        // read one line at a time from absolute Windows path
-        System.out.println("readLine() from absolute Windows path");
-        System.out.println("---------------------------------------------------------------------------");
-        try {
-            in = new In("G:\\www\\introcs\\stdlib\\InTest.txt");
-            while (!in.isEmpty()) {
-                String s = in.readLine();
-                System.out.println(s);
-            }
-            System.out.println();
-        }
-        catch (Exception e) { System.out.println(e); }
-        System.out.println();
-
-    }
 
 }
