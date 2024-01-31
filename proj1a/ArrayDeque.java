@@ -99,6 +99,10 @@ public class ArrayDeque<T> {
         return size;
     }
 
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
 
 
     private void resizeSmaller() {
