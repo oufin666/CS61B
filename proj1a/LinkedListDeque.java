@@ -67,6 +67,20 @@ public class LinkedListDeque<T> {
         return firstNode.item;
     }
 
+    public T removeLast() {
+        if (isEmpty()) {
+            return null; // If the deque is empty, return null
+        }
+
+        Node<T> lastNode = sentinel.prev;
+        sentinel.prev = lastNode.prev;
+        lastNode.prev.next = sentinel;
+        size--;
+
+        return lastNode.item;
+    }
+
+
     public T get(int index) {
         if (index < 0 || index >= size) {
             return null;  // Index out of bounds, return null

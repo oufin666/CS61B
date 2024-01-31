@@ -142,6 +142,18 @@ public class ArrayDeque<T> {
         return size == items.length - 1;
     }
 
+    public void printDeque() {
+        int startIndex = (nextFirst + 1) % items.length;
+        for (int i = startIndex; i != nextLast; i = (i + 1) % items.length) {
+            System.out.print(items[i]);
+            if ((i + 1) % items.length != nextLast) {
+                System.out.print(" ");
+            }
+        }
+        System.out.println();
+    }
+
+
 
 
     private boolean isSparse() {
